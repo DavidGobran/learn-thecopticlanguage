@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import OneOne from './lessons/1-1';
+import OneTwo from './lessons/1-2';
+import TwoOne from './lessons/2-1';
+import TwoTwo from './lessons/2-2';
 
 function App() {
-  const [showOneOne, setShowOneOne] = useState(false);
+  const [activeLesson, setActiveLesson] = useState(null);
 
   return (
     <body>
@@ -20,13 +23,24 @@ function App() {
         </a>
         <button id="modes"></button>
       </header>
-      {showOneOne ? <OneOne /> : 
+      {activeLesson ? (
+        // Render the active lesson component
+        activeLesson === '1-1' ? (
+          <OneOne />
+        ) : activeLesson === '1-2' ? (
+          <OneTwo />
+        ) : activeLesson === '2-1' ? (
+          <TwoOne />
+        ) : activeLesson === '2-2' ? (
+          <TwoTwo />
+        ) : null
+      ) :
       <div id="main">
         <div id="inner">
           <div className="unit">
             <div className="uHead">Unit 1: The Beginning</div>
             <div className="moduleSection">
-              <div className="module" id="1-1" onClick={() => setShowOneOne(true)}>
+              <div className="module" id="1-1" onClick={() => setActiveLesson('1-1')}>
                 <div className="progressBar" id="t">
                   <svg
                     viewBox="0 0 500 500"
@@ -52,7 +66,7 @@ function App() {
                 </div>
                 <div className="mHead">Introduction</div>
               </div>
-              <div className="module" id="1-2">
+              <div className="module" id="1-2" onClick={() => setActiveLesson('1-2')}>
                 <div className="progressBar">
                   <svg
                     viewBox="0 0 500 500"
@@ -83,7 +97,7 @@ function App() {
           <div className="unit">
             <div className="uHead">Unit 2: Nouns</div>
             <div className="moduleSection">
-              <div className="module" id="2-1">
+              <div className="module" id="2-1" onClick={() => setActiveLesson('2-1')}>
                 <div className="progressBar">
                   <svg
                     viewBox="0 0 500 500"
@@ -109,7 +123,7 @@ function App() {
                 </div>
                 <div className="mHead">Nouns and Gender</div>
               </div>
-              <div className="module" id="2-2">
+              <div className="module" id="2-2" onClick={() => setActiveLesson('2-2')}>
                 <div className="progressBar">
                   <svg
                     viewBox="0 0 500 500"
